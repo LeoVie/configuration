@@ -37,4 +37,4 @@ jobs:
 
       - run: bin/phpstan analyse src test --configuration=build/config/phpstan.neon
       - run: bin/phpunit --configuration=build/config/phpunit.xml
-      - run: bin/infection --configuration=build/config/infection.json --threads=4 --coverage=build/coverage --min-msi=92
+      - run: bin/infection --configuration=./build/config/infection.json --threads=4 --coverage=./build/coverage --min-msi=92
