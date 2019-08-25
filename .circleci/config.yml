@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
+      - image: circleci/php:7.2-node-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -34,16 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
-      - restore_cache:
-          keys:
-            - node-v1-{{ checksum "package.json" }}
-            - node-v1-
-      - run: yarn install
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
-          paths:
-            - node_modules
 
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
+      - run: bin/phpstan analyse src test --configuration=build/config/phpstan.neon
       - run: bin/phpunit --configuration=build/config/phpunit.xml
+      - run: bin/infection --configuration=./build/config/infection.json --threads=4 --coverage=./build/coverage --min-msi=92
