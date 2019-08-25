@@ -35,6 +35,6 @@ jobs:
           paths:
             - ./vendor
 
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
+      - run: bin/phpstan analyse src test --configuration=build/config/phpstan.neon
       - run: bin/phpunit --configuration=build/config/phpunit.xml
+      - run: bin/infection --configuration=build/config/infection.json --threads=4 --coverage=build/coverage --min-msi=92
