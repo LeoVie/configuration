@@ -13,6 +13,13 @@ class ConfigurationFactory
 
         $configuration = new Configuration();
 
+        $configuration = self::assignConfigurationValuesToConfiguration($configurationValues, $configuration);
+
+        return $configuration;
+    }
+
+    private static function assignConfigurationValuesToConfiguration(array $configurationValues, Configuration $configuration): Configuration
+    {
         foreach ($configurationValues as $configurationKey => $configurationValue) {
             $configuration->{$configurationKey} = $configurationValue;
         }
