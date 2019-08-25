@@ -2,7 +2,7 @@
 vendor
 composer.lock
 bin
-.cache
-build
-!build/config
+*.cache
+build/coverage
+build/logs
 infection.log
